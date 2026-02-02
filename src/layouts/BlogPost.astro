@@ -1,14 +1,14 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { AUTHOR_NAME, AUTHOR_PHOTO } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, type, description, pubDate, updatedDate } = Astro.props;
 ---
 
 <html lang="en">
@@ -19,15 +19,6 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				width: calc(100% - 2em);
 				max-width: 100%;
 				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
 			}
 			.prose {
 				width: 720px;
@@ -52,6 +43,43 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.last-updated-on {
 				font-style: italic;
 			}
+			.post-footer {
+				margin-top: 2em;
+				padding-top: 1.5em;
+				border-top: 2px solid rgb(var(--gray-light));
+				display: flex;
+				justify-content: flex-end;
+			}
+			.footer-content {
+				display: grid;
+				grid-template-columns: 1fr 80px;
+				gap: 1em;
+				align-items: center;
+				max-width: 420px;
+				padding: 1em 1.25em;
+				border: 1px solid rgb(var(--gray-light));
+				border-radius: 12px;
+				background: rgba(var(--gray-light), 0.2);
+			}
+			.footer-info {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5em;
+			}
+			.footer-row {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+			}
+			.footer-label {
+				font-weight: 600;
+			}
+			.author-photo {
+				width: 80px;
+				height: 80px;
+				border-radius: 50%;
+				object-fit: cover;
+			}
 		</style>
 	</head>
 
@@ -59,9 +87,6 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Header />
 		<main>
 			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
 				<div class="prose">
 					<div class="title">
 						<div class="date">
@@ -78,6 +103,21 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 						<hr />
 					</div>
 					<slot />
+					<div class="post-footer">
+						<div class="footer-content">
+							<div class="footer-info">
+								<div class="footer-row">
+									<span class="footer-label">Written by:</span>
+									<span>{AUTHOR_NAME}</span>
+								</div>
+								<div class="footer-row">
+									<span class="footer-label">Posted on:</span>
+									<FormattedDate date={pubDate} />
+								</div>
+							</div>
+							<img src={AUTHOR_PHOTO} alt={AUTHOR_NAME} class="author-photo" />
+						</div>
+					</div>
 				</div>
 			</article>
 		</main>

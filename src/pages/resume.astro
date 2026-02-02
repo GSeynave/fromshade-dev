@@ -1,0 +1,146 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/TestPage.astro';
+---
+
+<!-- Create a contact page using the Layout component -->
+<Layout
+        title="My resume"
+        type="Article"
+        description="My professional resume"
+        pubDate={new Date()}
+>
+
+    <style>
+        /* Scoped styles for the resume page - minimal and compatible with site globals */
+        .resume {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.25rem 1rem; /* slightly tighter padding */
+            box-shadow: var(--box-shadow);
+            color: rgb(var(--gray-dark));
+            font-size: 0.98rem; /* slightly smaller base text inside the resume card */
+            line-height: 1.5;
+        }
+        .resume-header {
+            display: grid;
+            grid-template-columns: 1fr 120px;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .resume-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: rgb(var(--black));
+            margin: 0;
+        }
+        .resume-title {
+            margin-top: 0.2rem;
+            font-style: italic;
+            color: rgb(var(--gray));
+        }
+        .resume-contact {
+            margin-top: 0.4rem;
+            font-size: 0.88rem; /* smaller contact text */
+            color: rgb(var(--gray));
+        }
+        .section {
+            margin-top: 0.6rem; /* tighter sections */
+        }
+        .section h2 {
+            font-size: 0.95rem;
+            margin: 0 0 0.4rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--accent-dark);
+        }
+        /* Reduce paragraph text size and spacing for dense content (summary, skills, jobs, education) */
+        .section p {
+            margin: 0.25rem 0;
+            font-size: 0.92rem;
+            line-height: 1.4;
+            color: rgb(var(--gray-dark));
+        }
+        /* Job titles stay prominent, but with reduced top spacing */
+        .job-title {
+            font-weight: 700;
+            color: rgb(var(--black));
+            margin: 0.35rem 0 0.15rem 0;
+            font-size: 0.95rem;
+        }
+        .prose p {
+            margin: 0.4rem 0;
+        }
+        @media (max-width: 720px) {
+            .resume-header { grid-template-columns: 1fr; }
+            .resume { padding: 1rem; font-size: 0.95rem; }
+            .section p { font-size: 0.9rem; }
+        }
+    </style>
+
+    <div class="resume">
+        <header class="resume-header">
+            <div>
+                <p class="resume-name"><b>GAUTHIER SEYNAVE</b></p>
+                <p class="resume-title"><i>Backend Developer | Java / Spring</i></p>
+                <p class="resume-contact">Email: gesynave.work@gmail.com | Location: France (Remote)</p>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>Summary</h2>
+            <p>This is my professional resume. You can find details about my work experience, education, skills, and more.</p>
+            <p>
+                Backend developer with 5+ years of experience building scalable applications with Spring Boot, Java, and
+                microservices architecture. Experienced in REST API design, database optimization, and production system
+                maintenance.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Technical skills</h2>
+            <p>
+                Languages: Java, SQL, Kotlin<br>
+                Frameworks: Spring Boot, Spring Data, Hibernate/JPA<br>
+                Databases: PostgreSQL, MongoDB<br>
+                Tools: Git, Docker, Maven, Kafka<br>
+                Architecture: REST/UI APIs, Domain Driven Design, Modulith, Microservices, Event-driven systems<br>
+                Testing: Unit tests, Integration tests
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Professional experience</h2>
+
+            <p class="job-title">* Backend Developer | Shape-IT | 2021 - Present</p>
+            <p>Built, maintained and monitored REST APIs for supply chain management systems</p>
+            <p>Led migration from micro-services to Spring modulith architecture</p>
+            <p>Implemented Supplier Return Order processing system</p>
+            <p>Served as "go to person" for technical questions and problem-solving within the team</p>
+
+            <p class="job-title">* Java Developer | Ubik Ingenierie | 2020 - 2021</p>
+            <p>Implemented features in large-scale financial transaction system for ADEIO Group</p>
+            <p>Maintained and enhanced REST-based monolithic application</p>
+            <p>Conducted test coverage across existing codebase ensuring production stability</p>
+
+            <p class="job-title">* Cobol Developer | Cobol Open | 2018 - 2020</p>
+            <p>Maintained legacy COBOL systems for PSA automotive group</p>
+
+            <p class="job-title">* Cobol Developer | IBM Lille | 2018 - 2018</p>
+            <p>Developed COBOL batch processes for EURO information banking client</p>
+        </section>
+
+        <section class="section">
+            <h2>Education</h2>
+            <p>Formation Java JEE | IB Groupe | 2020-2021<br>
+            BTS Computer Science | Lycée de l'Europe | 2013</p>
+        </section>
+
+        <section class="section">
+            <h2>Languages</h2>
+            <p>French (Native) | English (Professional Working Proficiency)</p>
+        </section>
+
+    </div>
+</Layout>
+
