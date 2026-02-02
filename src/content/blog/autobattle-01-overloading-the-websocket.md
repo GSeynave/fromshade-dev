@@ -78,7 +78,9 @@ Here it's a bit different.
 See how I put 2 attacks in grey? If the server couldn't pass information in between tick, this is what it would have done. Indeed, a tick is 1500 ms, then Tick 3 need to pile up 1500 ms of actions.
 The server receives those actions and render them in the given time.
 But wait! Tick 2 ended with a long movement action, then the client would still be rendering the movement that the server would think that it is rendering the attack. Then come the tick 4 with even more actions and you see where it goes, the client begins to be late.
-The solution is to carry over the time used into the next tick, now the server only has enough to fit in an attack action of 500 ms. 1000 ms carried from previous tick + 500 from attack.
+
+The solution is to carry over the time used into the next tick.
+Looking at the example, the server will assume only 500ms is available when processing the tick3, resulting in adding a single attack action. They grey one are not even considered anymore.
 
 
 
